@@ -56,6 +56,12 @@ def subtract_me(number_1: int, number_2: int):
     result = number_1 - number_2
     return {"result": result}
 
+# Adding another additional endpoint for Lab 6
+@app.get("/add/{number_1}/{number_2}/{number_3}")
+def add_all_of_this(number_1: int, number_2: int, number_3: int):
+    sum = number_1 + number_2 + number_3
+    return {"sum": sum}
+
 
 ## Parameters
 # Introduce parameter data types and defaults from the Optional library
