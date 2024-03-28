@@ -49,6 +49,12 @@ def divide_me(number_1: int, number_2: int):
 def multiply_this_stuff(num_1,num_2,num_3):
     product = int(num_1) * int(num_2) * int(num_3)
     return {"product": product}
+    
+# Adding additional endpoint for Lab 6
+@app.get("/subtract/{number_1}/{number_2}")
+def subtract_me(number_1: int, number_2: int):
+    result = number_1 - number_2
+    return {"result": result}
 
 
 ## Parameters
