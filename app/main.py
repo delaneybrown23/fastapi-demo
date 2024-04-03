@@ -70,6 +70,26 @@ def add_all_of_this(number_1: int, number_2: int, number_3: int):
     sum = number_1 + number_2 + number_3
     return {"sum": sum}
 
+# Data Project 1 - FastAPI endpoint decorator
+@app.get("/albums")
+def get_albums():
+        db = MySQLdb.connect(host=DBHOST, user=DBUSER, passwd=DBPASS, db=DB)
+        c = db.cursor(MySQLdb.cursors.DictCursor)
+        c.execute("""SELECT * FROM albums ORDER BY name""")
+        results = c.fetchall()
+        db.close()
+        return results
+
+# Endpoint to fetch a single album
+@app.get("/albums/{id}")
+def get_one_album(id):
+        db = MySQLdb.connect(host=DBHOST, user=DBUSER, passwd=DBPASS, db=DB)
+        c = db.cursor(MySQLdb.cursors.DictCursor)
+        c.execute("""SELECT * FROM albums WHERE id=""" + id)
+        results = c.fetchall()
+        db.close()
+        return results
+
 
 ## Parameters
 # Introduce parameter data types and defaults from the Optional library
@@ -130,3 +150,5 @@ def fetch_buckets():
     response = s3.list_buckets()
     buckets = response['Buckets']
     return {"buckets": buckets}
+
+
